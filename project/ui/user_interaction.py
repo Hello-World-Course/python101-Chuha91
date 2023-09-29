@@ -19,6 +19,7 @@ def register_user():
 
     if not is_name_valid(name_input):
         print("Your name is too short")
+        print("Name: None, Board Size: None, Number of Mines: None")
         return None, None, None
 
     player_name = name_input
@@ -26,6 +27,7 @@ def register_user():
 
     if not board_size_input.isdigit() or not is_board_size_valid(int(board_size_input)):
         print(f"{player_name}, you entered illegal board size")
+        print("Name: None, Board Size: None, Number of Mines: None")
         return None, None, None
 
     board_size = int(board_size_input)
@@ -33,6 +35,7 @@ def register_user():
 
     if not mines_num_input.isdigit() or not is_number_of_mines_valid(board_size, int(mines_num_input)):
         print(f"{player_name}, you entered illegal number of mines")
+        print("Name: None, Board Size: None, Number of Mines: None")
         return None, None, None
 
     mines_num = int(mines_num_input)
@@ -40,4 +43,5 @@ def register_user():
 
 
 player_name, board_size, mines_num = register_user()
-print(player_name, board_size, mines_num)
+if all([player_name, board_size, mines_num]):  # Only print if all values are not None
+    print(f"Name: {player_name}, Board Size: {board_size}, Number of Mines: {mines_num}")
