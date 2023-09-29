@@ -39,3 +39,7 @@ def register_user():
         return None, None, None
 
     return player_name, board_size, mines_num
+
+
+player_name, board_size, mines_num = register_user()
+print(player_name, board_size, mines_num)
