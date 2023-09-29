@@ -18,7 +18,7 @@ if continue_process and name:
     if board_size_input.isdigit():
         temp_board_size = int(board_size_input)
 
-        if 0 <= temp_board_size <= 26:
+        if 1 <= temp_board_size <= 26:
             board_size = temp_board_size
 
             number_of_mines_input = input(f"{name} for board size {board_size}, choose number of mines to allocate:")
