@@ -1,6 +1,7 @@
 name = None
 board_size = None
 number_of_mines = None
+continue_process = True
 
 name_input = input("Hello, what's your name?")
 
@@ -9,8 +10,9 @@ if isinstance(name_input, str) and len(name_input) > 2:
     name = name_input
 else:
     print("Your name is too short")
+    continue_process = False
 
-if name:
+if continue_process and name:
     board_size_input = input(f"{name}, please choose board size:")
 
     if board_size_input.isdigit():
@@ -29,8 +31,9 @@ if name:
                 else:
                     print(f"{name} you entered illegal number of mines")
             else:
-                print(f"{name}, you entered illegal number of mines")
+                print(f"{name} you entered illegal number of mines")
         else:
-            print(f"{name}, you entered illegal board size")
+            print(f"{name} you entered illegal board size")
     else:
-        print(f"{name}, you entered illegal board size")
+        print(f"{name} you entered illegal board size")
+
