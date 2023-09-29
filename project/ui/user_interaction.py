@@ -40,8 +40,3 @@ def register_user():
 
     mines_num = int(mines_num_input)
     return player_name, board_size, mines_num
-
-
-player_name, board_size, mines_num = register_user()
-if all([player_name, board_size, mines_num]):  # Only print if all values are not None
-    print(f"Name: {player_name}, Board Size: {board_size}, Number of Mines: {mines_num}")
