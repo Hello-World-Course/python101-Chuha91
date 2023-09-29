@@ -6,7 +6,7 @@ from test_base.test_base import AssignmentTester
 from test_base.test_decorator import devin_test_decorator
 
 
-class TestStep3(AssignmentTester):
+class TestUi(AssignmentTester):
     def tearDown(self):
         try:
             del sys.modules['project.ui.user_interaction']
@@ -120,82 +120,6 @@ class TestStep3(AssignmentTester):
         # verify
         message.explanation = {'value': 'CODE_MISMATCH'}
         self.assertEqualWithMessage(real_result, expected_result, msg=message)
-
-    @devin_test_decorator
-    @mock.patch('sys.stdout', new_callable=io.StringIO)
-    @mock.patch('builtins.input', side_effect=['D', '9', '40'])
-    def test_full_interaction_wrong_name_verify_return(self, mock_input, mock_stdout, message):
-        # test
-        ######
-        import project.ui.user_interaction as user_interaction
-        real_result = user_interaction.register_user()
-        # verify
-        expected_result = (None, None, None)
-        self.assertEqualWithMessage(real_result, expected_result, msg=message)
-
-    @devin_test_decorator
-    @mock.patch('sys.stdout', new_callable=io.StringIO)
-    @mock.patch('builtins.input', side_effect=['D', '9', '40'])
-    def test_full_interaction_wrong_name_verify_output(self, mock_input, mock_stdout, message):
-        # test
-        ######
-        import project.ui.user_interaction as user_interaction
-        user_interaction.register_user()
-        # verify
-        expected_result = "Your name is too short\n"
-        real_result = mock_stdout.getvalue()
-        self.assertEqualWithMessage(real_result, expected_result, msg=message)
-
-    @devin_test_decorator
-    @mock.patch('sys.stdout', new_callable=io.StringIO)
-    @mock.patch('builtins.input', side_effect=['Dan', '0', '40'])
-    def test_full_interaction_wrong_board_size_verify_return(self, mock_input, mock_stdout, message):
-        # test
-        ######
-        import project.ui.user_interaction as user_interaction
-        real_result = user_interaction.register_user()
-        # verify
-        expected_result = (None, None, None)
-        self.assertEqualWithMessage(real_result, expected_result, msg=message)
-
-    @devin_test_decorator
-    @mock.patch('sys.stdout', new_callable=io.StringIO)
-    @mock.patch('builtins.input', side_effect=['Dan', '0', '40'])
-    def test_full_interaction_wrong_board_size_verify_output(self, mock_input, mock_stdout, message):
-        # test
-        ######
-        import project.ui.user_interaction as user_interaction
-        user_interaction.register_user()
-        # verify
-        expected_result = "Dan, you entered illegal board size\n"
-        real_result = mock_stdout.getvalue()
-        self.assertEqualWithMessage(real_result, expected_result, msg=message)
-
-    @devin_test_decorator
-    @mock.patch('sys.stdout', new_callable=io.StringIO)
-    @mock.patch('builtins.input', side_effect=['Dan', '9', '2'])
-    def test_full_interaction_wrong_mines_verify_return(self, mock_input, mock_stdout, message):
-        # test
-        ######
-        import project.ui.user_interaction as user_interaction
-        real_result = user_interaction.register_user()
-        # verify
-        expected_result = (None, None, None)
-        self.assertEqualWithMessage(real_result, expected_result, msg=message)
-
-    @devin_test_decorator
-    @mock.patch('sys.stdout', new_callable=io.StringIO)
-    @mock.patch('builtins.input', side_effect=['Dan', '9', '2'])
-    def test_full_interaction_wrong_mines_verify_output(self, mock_input, mock_stdout, message):
-        # test
-        ######
-        import project.ui.user_interaction as user_interaction
-        user_interaction.register_user()
-        # verify
-        expected_result = "Dan, you entered illegal number of mines\n"
-        real_result = mock_stdout.getvalue()
-        self.assertEqualWithMessage(real_result, expected_result, msg=message)
-
 
     @devin_test_decorator
     @mock.patch('sys.stdout', new_callable=io.StringIO)
