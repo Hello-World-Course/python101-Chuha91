@@ -16,7 +16,6 @@ if name:
     if board_size_input.isdigit():
         temp_board_size = int(board_size_input)
 
-        # Check for board_size conditions
         if 0 <= temp_board_size <= 26:
             board_size = temp_board_size
 
@@ -25,16 +24,13 @@ if name:
             if number_of_mines_input.isdigit():
                 temp_number_of_mines = int(number_of_mines_input)
 
-                # Check for number_of_mines conditions
                 if 0 < temp_number_of_mines < board_size / 2:
                     number_of_mines = temp_number_of_mines
                 else:
-                    print(f"{name} you entered an illegal number of mines")
+                    print(f"{name} you entered illegal number of mines")
             else:
-                print(f"{name} you entered an illegal number of mines")
+                print(f"{name}, you entered illegal number of mines")
         else:
-            print(f"{name} you entered an illegal board size")
+            print(f"{name}, you entered illegal board size")
     else:
-        print(f"{name} you entered an illegal board size")
-
-print(f"Name: {name}, Board Size: {board_size}, Number of Mines: {number_of_mines}")
+        print(f"{name}, you entered illegal board size")
