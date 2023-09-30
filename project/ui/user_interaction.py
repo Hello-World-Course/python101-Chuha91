@@ -1,39 +1,42 @@
-name = None
-board_size = None
-number_of_mines = None
-continue_process = True
+def is_name_valid(name):
+    return isinstance(name, str) and len(name) > 2
 
-name_input = input("Hello, what's your name?")
 
-# Check for name conditions
-if isinstance(name_input, str) and len(name_input) > 2:
-    name = name_input
-else:
-    print("Your name is too short")
-    continue_process = False
+def is_board_size_valid(board_size):
+    return 1 <= board_size <= 26
 
-if continue_process and name:
-    board_size_input = input(f"{name}, please choose board size:")
 
-    if board_size_input.isdigit():
-        temp_board_size = int(board_size_input)
+def is_number_of_mines_valid(board_size, number_of_mines):
+    return 0 < number_of_mines < (board_size**2) / 2
 
-        if 1 <= temp_board_size <= 26:
-            board_size = temp_board_size
 
-            number_of_mines_input = input(f"{name} for board size {board_size}, choose number of mines to allocate:")
+def register_user():
+    player_name = None
+    board_size = None
+    mines_num = None
 
-            if number_of_mines_input.isdigit():
-                temp_number_of_mines = int(number_of_mines_input)
+    name_input = input("Hello, what's your name?")
 
-                if 0 < temp_number_of_mines < board_size / 2:
-                    number_of_mines = temp_number_of_mines
-                else:
-                    print(f"{name} you entered illegal number of mines")
-            else:
-                print(f"{name} you entered illegal number of mines")
-        else:
-            print(f"{name} you entered illegal board size")
-    else:
-        print(f"{name} you entered illegal board size")
+    if not is_name_valid(name_input):
+        print("Your name is too short")
+        print("Name: None, Board Size: None, Number of Mines: None")
+        return None, None, None
 
+    player_name = name_input
+    board_size_input = input(f"{player_name}, please choose board size:")
+
+    if not board_size_input.isdigit() or not is_board_size_valid(int(board_size_input)):
+        print(f"{player_name}, you entered illegal board size")
+        print("Name: None, Board Size: None, Number of Mines: None")
+        return None, None, None
+
+    board_size = int(board_size_input)
+    mines_num_input = input(f"{player_name} for board size {board_size}, choose number of mines to allocate:")
+
+    if not mines_num_input.isdigit() or not is_number_of_mines_valid(board_size, int(mines_num_input)):
+        print(f"{player_name}, you entered illegal number of mines")
+        print("Name: None, Board Size: None, Number of Mines: None")
+        return None, None, None
+
+    mines_num = int(mines_num_input)
+    return player_name, board_size, mines_num
